@@ -1,6 +1,6 @@
-﻿using RealEstate_Dapper_Api.Dtos;
-using RealEstate_Dapper_Api.Models.DapperContext;
+﻿using RealEstate_Dapper_Api.Models.DapperContext;
 using Dapper;
+using RealEstate_Dapper_Api.Dtos.CategoryDtos;
 
 namespace RealEstate_Dapper_Api.Repositories.CategoryRepository
 {
