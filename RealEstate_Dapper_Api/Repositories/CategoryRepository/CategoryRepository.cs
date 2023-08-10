@@ -46,9 +46,21 @@ namespace RealEstate_Dapper_Api.Repositories.CategoryRepository
             }
         }
 
+		public async Task<GetByIDCategoryDto> GetCategory(int id)
+		{
+            string query = "Select * From Category where CategoryID=@categoryID";
+            var parameters = new DynamicParameters();
+            parameters.Add("@categoryID", id);
+            using(var connection= _context.CreateConnection())
+            {
+                var values = await connection.QueryFirstOrDefaultAsync<GetByIDCategoryDto>(query,parameters);
+                return values;
+            }
+		}
+
 		public async void UpdateCategory(UpdateCategoryDto categoryDto)
 		{
-            string query = "Update Category Set CategoryName=@categoryName,CategoryStatus=@categoryStatus where CategoryID=@categoryId";
+            string query = "Update Category Set CategoryName=@categoryName,CategoryStatus=@categoryStatus where CategoryID=@categoryID";
             var parameters = new DynamicParameters();
             parameters.Add("@categoryName",categoryDto.CategoryName);
             parameters.Add("@categoryStatus", categoryDto.CategoryStatus);
